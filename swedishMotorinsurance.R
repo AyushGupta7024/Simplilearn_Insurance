@@ -1,0 +1,21 @@
+getwd()
+setwd("C:/Users/ag030/OneDrive/Documents/R.project")
+h=read.csv("SwedishMotorInsurance.csv",header=T)
+summary(h)
+lm1=lm(ins$Payment~ins$Claims+ins$Insured)
+lm1
+summary(lm1)
+cor(ins$Claims,ins$Payment)
+cor(ins$Insured,ins$Payment)
+plot(ins$Claims,ins$Payment)
+plot(ins$Insured,ins$Payment)
+lm2=lm(ins$Payment~.,data=ins)
+summary(lm2)
+grupzone=apply(ins[,c(5,6,7)], 2, function(x) tapply(x, ins$Zone, mean)) 
+grupzone
+grupkil=apply(ins[,c(5,6,7)],2,function(x)tapply(x,ins$Kilometres,mean))
+grupkil
+grupbon=apply(ins[,c(5,6,7)],2,function(x)tapply(x,ins$Bonus,mean))
+grupbon
+reg=lm(Claims~Kilometres+Zone+Bonus+Make+Insured,data=ins)
+summary(reg)
